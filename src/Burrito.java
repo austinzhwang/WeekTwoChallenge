@@ -61,8 +61,8 @@ public class Burrito {
         return price;
     }
 
-    public String formatPrice() {
-        return currencyFormat.format(getPrice());
+    public String formatDollars(double d) {
+        return currencyFormat.format(d);
     }
 
     // Creates a new burrito and adds to the ArrayList.
@@ -81,7 +81,7 @@ public class Burrito {
     // Returns the ArrayList of burrito objects in string format
     public String printBurritos(ArrayList<Burrito> burritoList) {
         return "Burrito " + (burritoList.size()) + ": " + rice + ", " + meat + ", " + beans + ", " + salsa + ", "
-                + veggies + cheese + guac + queso + sourCream + " $" + formatPrice() + "\n";
+                + veggies + cheese + guac + queso + sourCream + " $" + formatDollars(getPrice()) + "\n";
     }
 
     // Returns a summary of items ordered and their quantities, as well as the total price.
@@ -226,15 +226,10 @@ public class Burrito {
                 + sofritas + " sofritas, " + vegAsMeat + " veggies(as meat option), " + bb + " black beans, "
                 + pb + " pinto beans, " + mild + " mild salsa, " + med + " medium salsa, " + hot + " hot salsa, "
                 + fajitas + " fajita veggies, " + lettuce + " lettuce, " + chz + " cheese, " + guac + " guac, "
-                + queso + " queso, " + sc + " sour cream, and the sum is $" + getSum(burritoList);
+                + queso + " queso, " + sc + " sour cream, and the sum is $" + formatDollars(getSum(burritoList));
 
-        StringBuilder sb = new StringBuilder(s);
-
-        int i = 0;
-        while (i + 50 < sb.length() && (i = sb.lastIndexOf(" ", i + 50)) != -1) {
-            sb.replace(i, i + 1, "\n");
-        }
-        return sb.toString();
+        String wrapStr = s.replaceAll("(.{50})", "$1\n");
+        return wrapStr;
     }
 
 
