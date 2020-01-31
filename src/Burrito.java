@@ -61,6 +61,7 @@ public class Burrito {
         return price;
     }
 
+    // Method to format double to two decimal places
     public String formatDollars(double d) {
         return currencyFormat.format(d);
     }
@@ -94,6 +95,7 @@ public class Burrito {
         String s = "";
 
         for (int i = 0; i < burritoList.size(); i++) {
+            // counts total of each type of rice
             switch (burritoList.get(i).rice) {
                 case "all" :
                     wr++;
@@ -108,7 +110,7 @@ public class Burrito {
                 default :
                     break;
             }
-
+            // counts total of each type of meat
             switch (burritoList.get(i).meat) {
                 case "all" :
                     chx++;
@@ -139,7 +141,7 @@ public class Burrito {
                 default:
                     break;
             }
-
+            // counts total of each type of bean
             switch (burritoList.get(i).beans) {
                 case "all":
                     bb++;
@@ -154,7 +156,7 @@ public class Burrito {
                 default:
                     break;
             }
-
+            // counts total of each type of salsa
             switch (burritoList.get(i).salsa) {
                 case "all":
                     mild++;
@@ -173,7 +175,7 @@ public class Burrito {
                 default:
                     break;
             }
-
+            // counts total of each type of veggies
             switch (burritoList.get(i).veggies) {
                 case "all":
                     lettuce++;
@@ -188,7 +190,7 @@ public class Burrito {
                 default:
                     break;
             }
-
+            // counts the total of cheese
             switch (burritoList.get(i).cheese) {
                 case ", cheese":
                     chz++;
@@ -196,7 +198,7 @@ public class Burrito {
                 default:
                     break;
             }
-
+            // counts the total of guac
             switch (burritoList.get(i).guac) {
                 case ", guac":
                     guac++;
@@ -204,7 +206,7 @@ public class Burrito {
                 default:
                     break;
             }
-
+            // counts the total of queso
             switch (burritoList.get(i).queso) {
                 case ", queso":
                     queso++;
@@ -212,7 +214,7 @@ public class Burrito {
                 default:
                     break;
             }
-
+            // counts the total of sour cream
             switch (burritoList.get(i).sourCream) {
                 case ", sour cream":
                     sc++;
@@ -228,11 +230,9 @@ public class Burrito {
                 + fajitas + " fajita veggies, " + lettuce + " lettuce, " + chz + " cheese, " + guac + " guac, "
                 + queso + " queso, " + sc + " sour cream, and the sum is $" + formatDollars(getSum(burritoList));
 
+        // prints out receipt; limits line to 50 characters
         String wrapStr = s.replaceAll("(.{50})", "$1\n");
         return wrapStr;
     }
-
-
-
 
 }
