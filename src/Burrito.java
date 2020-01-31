@@ -90,8 +90,8 @@ public class Burrito {
         int wr = 0, br = 0, chx = 0, steak = 0, carnitas = 0, chorizo = 0, sofritas = 0, vegAsMeat = 0
                 ,bb = 0, pb = 0
                 , mild = 0, med = 0, hot = 0
-                , fajitas = 0, lettuce = 0,
-                chz = 0, guac = 0, queso = 0, sc = 0;
+                , fajitas = 0, lettuce = 0
+                ,chz = 0, guac = 0, queso = 0, sc = 0;
         String s = "";
 
         for (int i = 0; i < burritoList.size(); i++) {
@@ -230,9 +230,14 @@ public class Burrito {
                 + fajitas + " fajita veggies, " + lettuce + " lettuce, " + chz + " cheese, " + guac + " guac, "
                 + queso + " queso, " + sc + " sour cream, and the sum is $" + formatDollars(getSum(burritoList));
 
-        // prints out receipt; limits line to 50 characters
-        String wrapStr = s.replaceAll("(.{50})", "$1\n");
-        return wrapStr;
+        // prints out receipt; limits line to 50 characters and moves to next line if word exceeds 50 characters
+        StringBuilder sb = new StringBuilder(s);
+        int i = 0;
+        while (i + 50 < sb.length() && (i = sb.lastIndexOf(" ", i + 50)) != -1) {
+            sb.replace(i, i + 1, "\n");
+        }
+
+        return sb.toString();
     }
 
 }
